@@ -15,10 +15,10 @@ class Book < ApplicationRecord
         if publication_date.present? && publication_date > Date.today
           errors.add(:publication_date, "can't be in the future")
         end
+
+  def country_must_start_with_capital_letter
+    if country.present? && !country.match?(/\A[A-Z]/)
+      errors.add(:country, "must start with a capital letter")
     end
-
-
-
-
-
+  end
 end
