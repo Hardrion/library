@@ -48,12 +48,15 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
   
-  #rubocop
-  gem 'rubocop'
-  gem 'rubocop-rails'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'dotenv-rails'
+  #rubocop
+  gem 'rubocop'
+  gem 'rubocop-rails'
+  gem 'rubocop-capybara'
+  gem 'rubocop-rspec'
+  gem 'rubocop-rspec_rails'
 end
 
 group :development do
