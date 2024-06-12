@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_11_141844) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_12_143143) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "author"
-    t.text "sypnosis"
+    t.text "synopsis"
     t.date "publication_date"
     t.string "country"
     t.integer "total_chapters"
