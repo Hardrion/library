@@ -3,7 +3,7 @@ class CreateBooks < ActiveRecord::Migration[7.1]
     create_table :books do |t|
       t.string :title
       t.string :author
-      t.text :synopsis
+      t.text :sypnosis
       t.date :publication_date
       t.string :country
       t.integer :total_chapters
