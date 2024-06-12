@@ -1,7 +1,7 @@
 class Book < ApplicationRecord
   validates :title, presence: true, uniqueness: true, length: { minimum: 2 }
   validates :author, presence: true, length: { minimum: 2 }
-  validates :sypnosis, length: { maximum:  250,
+  validates :synopsis, length: { maximum:  250,
                                  too_long: "%<count>s characters is the maximum allowed" }
   validates :country, presence: true, length: { minimum: 2 }
   validates :total_chapters, presence:     true,
