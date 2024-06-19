@@ -4,4 +4,7 @@ class User < ApplicationRecord
     validates :email, presence:true, uniqueness: true, email: true
     validates :date_of_birth, presence:true
     validates :address, presence: true, length: { minimum: 2, maximum: 100 }
+
+    #Association
+    has_many :favorite_books, through: :favorites
 end
