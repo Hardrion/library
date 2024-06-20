@@ -1,10 +1,11 @@
-class Api::V1::UsersController < ApplicationController
+class Api::V1::UsersController < Api::V1::BaseController
   before_action :set_user, only: [:show, :update, :destroy]
   skip_before_action :verify_authenticity_token
 
   def index
-    @users = User.all
-    render json: @users, each_serializer: UserSerializer
+    @pagy, @users = pagy(User.all, items: 5)
+    render json: {users: @users, pagy: pagy_metadata(@pagy)}, each_serializer: UserSerializer
+ 
   end
 
   def show
@@ -46,5 +47,15 @@ class Api::V1::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :date_of_birth, :address)
+  end
+
+  def pagy_metadata(pagy)
+    {
+      current_page: pagy.page,
+      next_page:    pagy.next,
+      prev_page:    pagy.prev,
+      total_pages:  pagy.pages,
+      total_count:  pagy.count
+    }
   end
 end
