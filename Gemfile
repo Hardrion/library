@@ -51,12 +51,25 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'dotenv-rails'
+
   #rubocop
   gem 'rubocop'
   gem 'rubocop-rails'
   gem 'rubocop-capybara'
   gem 'rubocop-rspec'
   gem 'rubocop-rspec_rails'
+
+  #validator
+  gem 'email_validator'
+
+  #api documentation
+  gem "apipie-rails"
+  
+  #serializer
+  gem 'active_model_serializers'
+
+  #pagination
+  gem 'pagy'
 end
 
 group :development do

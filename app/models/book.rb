@@ -25,4 +25,9 @@ class Book < ApplicationRecord
 
     errors.add(:country, "must start with a capital letter")
   end
+
+
+  # Associations
+  has_many :favorites
+  has_many :users_favorited_by, through: :favorites, source: :user
 end
