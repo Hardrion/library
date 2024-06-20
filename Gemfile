@@ -67,6 +67,9 @@ group :development, :test do
   
   #serializer
   gem 'active_model_serializers'
+
+  #pagination
+  gem 'pagy'
 end
 
 group :development do
