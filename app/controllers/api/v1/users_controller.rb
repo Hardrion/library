@@ -4,9 +4,14 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def index
     @pagy, @users = pagy(User.all, items: 5)
-    render json: {users: @users, pagy: pagy_metadata(@pagy)}, each_serializer: UserSerializer
- 
+    #render json: {{users: @users,each_serializer: UserSerializer}, pagy: pagy_metadata(@pagy)}, , status: :ok
+    render json: {
+      users: ActiveModelSerializers::SerializableResource.new(@users,
+                                                               each_serializer: UserSerializer),
+                                                               pagy:   pagy_metadata(@pagy)
+    }
   end
+
 
   def show
     @user = User.find_by(id: params[:id])

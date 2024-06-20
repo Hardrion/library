@@ -6,7 +6,11 @@ class Api::V1::FavoritesController < Api::V1::BaseController
   def index
     @pagy, @favorites = pagy(@user.favorite_books, items: 5)
     #render json: @favorites, status: :ok 
-    render json: {favorite_books: @favorites, pagy: pagy_metadata(@pagy)}, each_serializer: BookSerializer
+    render json: {
+      favorite_books: ActiveModelSerializers::SerializableResource.new(@favorites,
+                                                               each_serializer: BookSerializer),
+                                                               pagy:   pagy_metadata(@pagy)
+    }
   end
   
 
