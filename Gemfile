@@ -44,30 +44,32 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem 'rspec'
+gem 'rspec-rails'
+gem 'dotenv-rails'
+
+#rubocop
+gem 'rubocop'
+gem 'rubocop-rails'
+
+
+#validator
+gem 'email_validator'
+
+#api documentation
+gem "apipie-rails"
+
+#serializer
+gem 'active_model_serializers'
+
+#pagination
+gem 'pagy'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
   
-  gem 'rspec'
-  gem 'rspec-rails'
-  gem 'dotenv-rails'
 
-  #rubocop
-  gem 'rubocop'
-  gem 'rubocop-rails'
-
-
-  #validator
-  gem 'email_validator'
-
-  #api documentation
-  gem "apipie-rails"
-  
-  #serializer
-  gem 'active_model_serializers'
-
-  #pagination
-  gem 'pagy'
 end
 
 group :development do
