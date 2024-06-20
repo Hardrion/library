@@ -27,6 +27,7 @@ class Book < ApplicationRecord
   end
 
 
-  #Association
-  has_many :users_favorited_by, through: :favorites
+  # Associations
+  has_many :favorites
+  has_many :users_favorited_by, through: :favorites, source: :user
 end

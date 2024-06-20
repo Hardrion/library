@@ -5,6 +5,7 @@ class User < ApplicationRecord
     validates :date_of_birth, presence:true
     validates :address, presence: true, length: { minimum: 2, maximum: 100 }
 
-    #Association
-    has_many :favorite_books, through: :favorites
+    # Associations
+    has_many :favorites
+    has_many :favorite_books, through: :favorites, source: :book
 end
