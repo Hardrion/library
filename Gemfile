@@ -61,9 +61,12 @@ group :development, :test do
 
   #validator
   gem 'email_validator'
-  
+
   #api documentation
   gem "apipie-rails"
+  
+  #serializer
+  gem 'active_model_serializers'
 end
 
 group :development do
