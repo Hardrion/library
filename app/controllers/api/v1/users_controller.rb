@@ -1,5 +1,5 @@
 class Api::V1::UsersController < Api::V1::BaseController
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: %i[show update destroy]
   skip_before_action :verify_authenticity_token
 
   api :GET, "/api/v1/users", "Get users list"
@@ -42,15 +42,13 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def index
     @pagy, @users = pagy(User.all, items: 5)
-    #render json: {{users: @users,each_serializer: UserSerializer}, pagy: pagy_metadata(@pagy)}, , status: :ok
     render json: {
       users: ActiveModelSerializers::SerializableResource.new(@users,
-                                                               each_serializer: UserSerializer),
-                                                               pagy:   pagy_metadata(@pagy)
+                                                              each_serializer: UserSerializer),
+      pagy:  pagy_metadata(@pagy)
     }
   end
 
-  
   api :GET, "/api/v1/users/:id", "Show user"
   returns code: 200, desc: "Ok"
   returns code: 400, desc: "Bad Request"
@@ -107,7 +105,6 @@ class Api::V1::UsersController < Api::V1::BaseController
     end
   end
 
-
   api :PUT, "/api/v1/users/:id", "Create user"
   param :id, :number, desc: "ID of the user"
   param :first_name, String, desc: "First name"
@@ -154,7 +151,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   def set_user
     @user = User.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    render json: { error: 'User not found' }, status: :not_found
+    render json: { error: "User not found" }, status: :not_found
   end
 
   def user_params

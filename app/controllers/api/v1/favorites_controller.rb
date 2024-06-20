@@ -2,7 +2,6 @@ class Api::V1::FavoritesController < Api::V1::BaseController
   before_action :set_user
   skip_before_action :verify_authenticity_token
 
-
   api :GET, "/api/v1/users/:user_id/favorites", "Get user favorites"
   returns code: 200, desc: "Ok"
   returns code: 400, desc: "Bad Request"
@@ -36,11 +35,10 @@ class Api::V1::FavoritesController < Api::V1::BaseController
     @pagy, @favorites = pagy(@user.favorite_books, items: 5)
     render json: {
       favorite_books: ActiveModelSerializers::SerializableResource.new(@favorites,
-                                                               each_serializer: BookSerializer),
-                                                               pagy:   pagy_metadata(@pagy)
+                                                                       each_serializer: BookSerializer),
+      pagy:           pagy_metadata(@pagy)
     }
   end
-  
 
   api :POST, "/api/v1/users/:user_id/favorites", "Add book as user's favorite"
   param :book_id, :number, desc: "Book to be added as favorite", required: true
@@ -57,7 +55,7 @@ class Api::V1::FavoritesController < Api::V1::BaseController
   '
   def create
     book = Book.find(favorite_params[:book_id])
-    existing_favorite = @user.favorites.find_by(book: book)
+    existing_favorite = @user.favorites.find_by(book:)
 
     if existing_favorite
       render json: @favorite.errors, status: :conflict
@@ -78,15 +76,15 @@ class Api::V1::FavoritesController < Api::V1::BaseController
   returns code: 401, desc: "Unauthorized"
   returns code: 404, desc: "User not found"
   returns code: 500, desc: "Internal Server Error"
-  
+
   def destroy
     @favorite = @user.favorites.find_by(book_id: params[:book_id])
 
     if @favorite
       @favorite.destroy
-      render json: { message: 'Favorite successfully removed' }, status: :ok
+      render json: { message: "Favorite successfully removed" }, status: :ok
     else
-      render json: { error: 'Favorite not found' }, status: :not_found
+      render json: { error: "Favorite not found" }, status: :not_found
     end
   end
 
@@ -95,7 +93,7 @@ class Api::V1::FavoritesController < Api::V1::BaseController
   def set_user
     @user = User.find(params[:user_id])
   rescue ActiveRecord::RecordNotFound
-    render json: { error: 'User not found' }, status: :not_found
+    render json: { error: "User not found" }, status: :not_found
   end
 
   def favorite_params
