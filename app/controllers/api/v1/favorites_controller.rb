@@ -11,7 +11,7 @@ class Api::V1::FavoritesController < Api::V1::BaseController
   param :page, :number, desc: "Page number for pagination"
   example '
   {
-    "favorite_books": [
+    "favorites": [
         {
             "id": 62,
             "title": "The Great Adventure",
@@ -34,9 +34,9 @@ class Api::V1::FavoritesController < Api::V1::BaseController
   def index
     @pagy, @favorites = pagy(@user.favorite_books, items: 5)
     render json: {
-      favorite_books: ActiveModelSerializers::SerializableResource.new(@favorites,
-                                                                       each_serializer: BookSerializer),
-      pagy:           pagy_metadata(@pagy)
+      favorites: ActiveModelSerializers::SerializableResource.new(@favorites,
+                                                                  each_serializer: BookSerializer),
+      pagy:      pagy_metadata(@pagy)
     }
   end
 
@@ -50,7 +50,7 @@ class Api::V1::FavoritesController < Api::V1::BaseController
   returns code: 500, desc: "Internal Server Error"
   example '
   {
-    "book_id": 63
+    "book_id": 1
   }
   '
   def create
