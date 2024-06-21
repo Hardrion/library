@@ -298,43 +298,43 @@ users = User.create([
 # Create Favorites
 favorites = Favorite.create([
   { 
-    user: users.second, 
+    user: User.second, 
     book: Book.first 
   },
   { 
-    user: users.third, 
+    user: User.third, 
     book: Book.first 
   },
   { 
-    user: users.third, 
+    user: User.third, 
     book: Book.second 
   },
   { 
-    user: users.fourth, 
+    user: User.fourth, 
     book: Book.first 
   },
   { 
-    user: users.fourth, 
+    user: User.fourth, 
     book: Book.second 
   },
   { 
-    user: users.fourth, 
+    user: User.fourth, 
     book: Book.third 
   },
   { 
-    user: users.fifth, 
+    user: User.fifth, 
     book: Book.first 
   },
   { 
-    user: users.fifth, 
+    user: User.fifth, 
     book: Book.second 
   },
   { 
-    user: users.fifth, 
+    user: User.fifth, 
     book: Book.third 
   },
   { 
-    user: users.fifth, 
+    user: User.fifth, 
     book: Book.fourth 
   }
 ])
