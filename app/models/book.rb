@@ -27,6 +27,6 @@ class Book < ApplicationRecord
   end
 
   # Associations
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :users_favorited_by, through: :favorites, source: :user
 end

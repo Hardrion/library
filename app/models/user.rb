@@ -6,6 +6,6 @@ class User < ApplicationRecord
   validates :address, presence: true, length: { minimum: 2, maximum: 100 }
 
   # Associations
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :favorite_books, through: :favorites, source: :book
 end
