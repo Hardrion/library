@@ -215,12 +215,6 @@ Book.create([
   }
 ])
 
-
-
-
-
-
-
 # Create Users
 users = User.create([
   { 
