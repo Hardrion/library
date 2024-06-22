@@ -40,7 +40,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   '
 
   def index
-    @pagy, @users = pagy(User.all, items: 5)
+    @pagy, @users = pagy(User.all, items: params[:items] || 5)
     render json: {
       users: ActiveModelSerializers::SerializableResource.new(@users,
                                                               each_serializer: Api::V1::UserSerializer),
