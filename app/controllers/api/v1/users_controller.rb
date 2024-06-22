@@ -141,8 +141,12 @@ class Api::V1::UsersController < Api::V1::BaseController
   returns code: 500, desc: "Internal Server Error"
 
   def destroy
-    @user.destroy
-    head :no_content
+    if @user
+      @user.destroy
+      render json: { message: "User successfully removed" }, status: :ok
+    else
+      render json: { error: "User not found" }, status: :not_found
+    end
   end
 
   private
