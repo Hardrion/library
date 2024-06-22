@@ -1,6 +1,6 @@
 class Api::V1::FavoritesController < Api::V1::BaseController
   before_action :set_user
-  skip_before_action :verify_authenticity_token
+  
 
   api :GET, "/api/v1/users/:user_id/favorites", "Get user favorites"
   returns code: 200, desc: "Ok"

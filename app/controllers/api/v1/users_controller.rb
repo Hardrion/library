@@ -1,6 +1,5 @@
 class Api::V1::UsersController < Api::V1::BaseController
   before_action :set_user, only: %i[show update destroy]
-  skip_before_action :verify_authenticity_token
 
   api :GET, "/api/v1/users", "Get users list"
   returns code: 200, desc: "Ok"
