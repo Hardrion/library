@@ -3,7 +3,7 @@ class Book < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :users_favorited_by, through: :favorites, source: :user
 
-  #Validations
+  # Validations
   validates :title, presence: true, uniqueness: true, length: { minimum: 2 }
   validates :author, presence: true, length: { minimum: 2 }
   validates :synopsis, length: { maximum:  250,
@@ -30,6 +30,4 @@ class Book < ApplicationRecord
 
     errors.add(:country, "must start with a capital letter")
   end
-
-
 end
