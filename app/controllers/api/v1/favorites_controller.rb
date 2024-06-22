@@ -35,7 +35,7 @@ class Api::V1::FavoritesController < Api::V1::BaseController
     @pagy, @favorites = pagy(@user.favorite_books, items: 5)
     render json: {
       favorites: ActiveModelSerializers::SerializableResource.new(@favorites,
-                                                                  each_serializer: BookSerializer),
+                                                                  each_serializer: Api::V1::BookSerializer),
       pagy:      pagy_metadata(@pagy)
     }
   end

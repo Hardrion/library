@@ -43,7 +43,7 @@ class Api::V1::UsersController < Api::V1::BaseController
     @pagy, @users = pagy(User.all, items: 5)
     render json: {
       users: ActiveModelSerializers::SerializableResource.new(@users,
-                                                              each_serializer: UserSerializer),
+                                                              each_serializer: Api::V1::UserSerializer),
       pagy:  pagy_metadata(@pagy)
     }
   end
@@ -68,7 +68,7 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def show
     if @user.present?
-      render json: @user, serializer: UserSerializer, status: :ok
+      render json: @user, serializer: Api::V1::UserSerializer, status: :ok
     else
       render json: @user.as_json, status: :not_found
     end
@@ -98,7 +98,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   def create
     @user = User.new(user_params)
     if @user.save
-      render json: @user, serializer: UserSerializer, status: :created
+      render json: @user, serializer: Api::V1::UserSerializer, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -128,7 +128,7 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def update
     if @user.update(user_params)
-      render json: @user, serializer: UserSerializer
+      render json: @user, serializer: Api::V1::UserSerializer
     else
       render json: @user.errors, status: :unprocessable_entity
     end
