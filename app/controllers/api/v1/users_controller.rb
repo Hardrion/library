@@ -4,7 +4,6 @@ class Api::V1::UsersController < Api::V1::BaseController
   api :GET, "/api/v1/users", "Get users list"
   returns code: 200, desc: "Ok"
   returns code: 400, desc: "Bad Request"
-  returns code: 401, desc: "Unauthorized"
   returns code: 404, desc: "Not Found"
   returns code: 500, desc: "Internal Server Error"
   param :page, :number, desc: "Page number for pagination"
@@ -53,7 +52,6 @@ class Api::V1::UsersController < Api::V1::BaseController
   api :GET, "/api/v1/users/:id", "Show user"
   returns code: 200, desc: "Ok"
   returns code: 400, desc: "Bad Request"
-  returns code: 401, desc: "Unauthorized"
   returns code: 404, desc: "Not Found"
   returns code: 500, desc: "Internal Server Error"
 
@@ -84,7 +82,6 @@ class Api::V1::UsersController < Api::V1::BaseController
   param :address, String, desc: "Address", required: true
   returns code: 201, desc: "Created"
   returns code: 400, desc: "Bad Request"
-  returns code: 401, desc: "Unauthorized"
   returns code: 422, desc: "Unprocessable Entity"
   returns code: 500, desc: "Internal Server Error"
   example '
@@ -115,7 +112,6 @@ class Api::V1::UsersController < Api::V1::BaseController
   param :address, String, desc: "Address"
   returns code: 200, desc: "Ok"
   returns code: 400, desc: "Bad Request"
-  returns code: 401, desc: "Unauthorized"
   returns code: 422, desc: "Unprocessable Entity"
   returns code: 500, desc: "Internal Server Error"
   example '

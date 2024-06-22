@@ -4,7 +4,6 @@ class Api::V1::FavoritesController < Api::V1::BaseController
   api :GET, "/api/v1/users/:user_id/favorites", "Get user favorites"
   returns code: 200, desc: "Ok"
   returns code: 400, desc: "Bad Request"
-  returns code: 401, desc: "Unauthorized"
   returns code: 404, desc: "Not Found"
   returns code: 500, desc: "Internal Server Error"
   param :page, :number, desc: "Page number for pagination"
@@ -45,7 +44,6 @@ class Api::V1::FavoritesController < Api::V1::BaseController
   param :book_id, :number, desc: "Book to be added as favorite", required: true
   returns code: 201, desc: "Created"
   returns code: 400, desc: "Bad Request"
-  returns code: 401, desc: "Unauthorized"
   returns code: 409, desc: "Conflict"
   returns code: 422, desc: "Unprocessable Entity"
   returns code: 500, desc: "Internal Server Error"
@@ -74,7 +72,6 @@ class Api::V1::FavoritesController < Api::V1::BaseController
   param :book_id, :number, desc: "ID of the user to be deleted"
   returns code: 204, desc: "No Content"
   returns code: 400, desc: "Bad Request"
-  returns code: 401, desc: "Unauthorized"
   returns code: 404, desc: "User not found"
   returns code: 500, desc: "Internal Server Error"
 
