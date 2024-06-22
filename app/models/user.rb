@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+  # Associations
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_books, through: :favorites, source: :book
+
+  #Validations
   validates :first_name, presence: true, length: { minimum: 2 }
   validates :last_name, presence: true, length: { minimum: 2 }
   validates :email, presence: true, uniqueness: true, email: true
@@ -7,9 +12,7 @@ class User < ApplicationRecord
 
   validate :date_of_birth_cannot_be_in_the_future
 
-  # Associations
-  has_many :favorites, dependent: :destroy
-  has_many :favorite_books, through: :favorites, source: :book
+  
 
   private
 
