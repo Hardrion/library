@@ -79,7 +79,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   param :first_name, String, desc: "First name", required: true
   param :last_name, String, desc: "Last name", required: true
   param :email, String, desc: "Email address", required: true
-  param :date_of_birth, Date, desc: "Date of birth", required: true
+  param :date_of_birth, String, desc: "Date of birth", required: true
   param :address, String, desc: "Address", required: true
   returns code: 201, desc: "Created"
   returns code: 400, desc: "Bad Request"
@@ -110,7 +110,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   param :first_name, String, desc: "First name"
   param :last_name, String, desc: "Last name"
   param :email, String, desc: "Email address"
-  param :date_of_birth, Date, desc: "Date of birth"
+  param :date_of_birth, String, desc: "Date of birth"
   param :address, String, desc: "Address"
   returns code: 200, desc: "Ok"
   returns code: 400, desc: "Bad Request"
