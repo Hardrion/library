@@ -1,6 +1,6 @@
-module   Api::V1::FavoriteResponseExampleHelper
+module Api::V1::FavoriteResponseExampleHelper
   def index_response
-    return '
+    '
     {
     "favorites": [
         {
@@ -24,7 +24,7 @@ module   Api::V1::FavoriteResponseExampleHelper
   end
 
   def create_response
-    return '
+    '
     {
     "book_id": 1
     }

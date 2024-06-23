@@ -1,8 +1,7 @@
-
 class Api::V1::FavoritesController < Api::V1::BaseController
   before_action :set_user
-  include Api::V1::FavoriteResponseExampleHelper  
-  
+  include Api::V1::FavoriteResponseExampleHelper
+
   api :GET, "/api/v1/users/:user_id/favorites", "Get user favorites"
   returns code: 200, desc: "Ok"
   returns code: 400, desc: "Bad Request"

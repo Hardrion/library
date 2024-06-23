@@ -1,4 +1,3 @@
-
 class Api::V1::UsersController < Api::V1::BaseController
   before_action :set_user, only: %i[show update destroy]
   include Api::V1::UserResponseExampleHelper
