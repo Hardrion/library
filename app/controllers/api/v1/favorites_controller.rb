@@ -1,33 +1,15 @@
+
 class Api::V1::FavoritesController < Api::V1::BaseController
   before_action :set_user
-
+  include Api::V1::FavoriteResponseExampleHelper  
+  
   api :GET, "/api/v1/users/:user_id/favorites", "Get user favorites"
   returns code: 200, desc: "Ok"
   returns code: 400, desc: "Bad Request"
   returns code: 404, desc: "Not Found"
   returns code: 500, desc: "Internal Server Error"
   param :page, :number, desc: "Page number for pagination"
-  example '
-  {
-    "favorites": [
-        {
-            "id": 62,
-            "title": "The Great Adventure",
-            "author": "John Smith",
-            "country": "USA",
-            "publication_date": "2020-01-15",
-            "total_chapters": 12
-        }
-    ],
-    "pagy": {
-        "current_page": 1,
-        "next_page": null,
-        "prev_page": null,
-        "total_pages": 1,
-        "total_count": 1
-    }
-  }
-  '
+  example new.index_response
 
   def index
     @pagy, @favorites = pagy(@user.favorite_books, items: params[:items] || 5)
@@ -47,11 +29,8 @@ class Api::V1::FavoritesController < Api::V1::BaseController
   returns code: 409, desc: "Conflict"
   returns code: 422, desc: "Unprocessable Entity"
   returns code: 500, desc: "Internal Server Error"
-  example '
-  {
-    "book_id": 1
-  }
-  '
+  example new.create_response
+
   def create
     book = Book.find(favorite_params[:book_id])
     existing_favorite = @user.favorites.find_by(book:)

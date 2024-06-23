@@ -1,5 +1,7 @@
+
 class Api::V1::UsersController < Api::V1::BaseController
   before_action :set_user, only: %i[show update destroy]
+  include Api::V1::UserResponseExampleHelper
 
   api :GET, "/api/v1/users", "Get users list"
   returns code: 200, desc: "Ok"
@@ -8,35 +10,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   returns code: 500, desc: "Internal Server Error"
   param :page, :number, desc: "Page number for pagination"
 
-  example '
-  {
-    "users": [
-        {
-            "id": 43,
-            "first_name": "John",
-            "last_name": "Doe",
-            "email": "john.doe@example.com",
-            "date_of_birth": "1990-01-01",
-            "address": "123 Main St"
-        },
-        {
-            "id": 44,
-            "first_name": "Jane",
-            "last_name": "Smith",
-            "email": "jane.smith@example.com",
-            "date_of_birth": "1985-05-05",
-            "address": "456 Elm St"
-        }
-    ],
-    "pagy": {
-        "current_page": 1,
-        "next_page": 2,
-        "prev_page": null,
-        "total_pages": 2,
-        "total_count": 10
-    }
-  }
-  '
+  example new.index_response
 
   def index
     @pagy, @users = pagy(User.all, items: params[:items] || 5)
@@ -55,16 +29,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   returns code: 404, desc: "Not Found"
   returns code: 500, desc: "Internal Server Error"
 
-  example '
-  {
-    "id": 45,
-    "first_name": "Alice",
-    "last_name": "Johnson",
-    "email": "alice.johnson@example.com",
-    "date_of_birth": "1992-03-12",
-    "address": "789 Pine St"
-  }
-  '
+  example new.show_response
 
   def show
     if @user.present?
@@ -84,15 +49,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   returns code: 400, desc: "Bad Request"
   returns code: 422, desc: "Unprocessable Entity"
   returns code: 500, desc: "Internal Server Error"
-  example '
-   {
-    "first_name": "John",
-    "last_name": "Doe",
-    "email": "john.doe@gmail.com",
-    "date_of_birth": "2001-01-01",
-    "address": "Talisay City, Cebu"
-  }
-  '
+  example new.create_response
 
   def create
     @user = User.new(user_params)
@@ -114,15 +71,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   returns code: 400, desc: "Bad Request"
   returns code: 422, desc: "Unprocessable Entity"
   returns code: 500, desc: "Internal Server Error"
-  example '
-  {
-   "first_name": "John",
-   "last_name": "Doe",
-   "email": "john.doe@gmail.com",
-   "date_of_birth": "2001-01-01",
-   "address": "Talisay City, Cebu"
- }
- '
+  example new.update_response
 
   def update
     if @user.update(user_params)
